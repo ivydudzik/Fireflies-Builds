@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhmd6uchqxc14"]
+
+[ext_resource type="Texture2D" uid="uid://idh4geq1oj" path="res://Art/U_Chip.png" id="1_ayudx"]
+[ext_resource type="Script" uid="uid://cx3uy7wrhaahu" path="res://Scripts/Volume.gd" id="2_khm8v"]
+[ext_resource type="Texture2D" uid="uid://dk8grfajhji4" path="res://Art/U_Slider.png" id="3_r8g5x"]
+[ext_resource type="Texture2D" uid="uid://bfwsvnsvypw35" path="res://Art/U_Music.png" id="4_dcnnb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3o5t2"]
+
+[node name="HSlider" type="HSlider"]
+offset_left = 102.0
+offset_top = 965.0
+offset_right = 307.0
+offset_bottom = 1028.0
+theme_override_icons/grabber = ExtResource("1_ayudx")
+theme_override_icons/grabber_highlight = ExtResource("1_ayudx")
+theme_override_icons/grabber_disabled = ExtResource("1_ayudx")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_3o5t2")
+max_value = 1.0
+step = 0.05
+value = 0.75
+script = ExtResource("2_khm8v")
+
+[node name="Bar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 26.0
+offset_right = 205.0
+offset_bottom = 99.0
+texture = ExtResource("3_r8g5x")
+
+[node name="Symbol" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -73.0
+offset_top = 10.0
+offset_right = 34.0
+offset_bottom = 115.0
+texture = ExtResource("4_dcnnb")
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

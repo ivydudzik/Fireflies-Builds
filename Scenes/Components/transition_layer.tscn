@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://w8weg2xjhduj"]
+
+[ext_resource type="Material" uid="uid://0hgu7f5j342o" path="res://Shaders & Materials/transitionmaterial.tres" id="1_shet8"]
+[ext_resource type="Script" uid="uid://bv1dxf3vkabpv" path="res://Scripts/transitioncontroller.gd" id="2_ax3bq"]
+
+[node name="Transition Layer" type="CanvasLayer"]
+layer = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch_mode = 0
+
+[node name="Transition" type="ColorRect" parent="AspectRatioContainer"]
+material = ExtResource("1_shet8")
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_ax3bq")
+open_transition_type = 5
+close_transition_type = 5
+open_ease_type = 1
+close_ease_type = 2
+metadata/_edit_use_anchors_ = true

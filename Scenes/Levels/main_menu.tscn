@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dde4tjt146seb"]
+
+[ext_resource type="Script" uid="uid://5562vljqh1gc" path="res://Scripts/main_menu.gd" id="1_b7svq"]
+[ext_resource type="Texture2D" uid="uid://b35s5vr3oljqw" path="res://Art/icon.svg" id="2_wnywc"]
+[ext_resource type="Texture2D" uid="uid://dp7fuyd1nxood" path="res://Art/M_Play.png" id="3_6yab0"]
+[ext_resource type="Texture2D" uid="uid://idh4geq1oj" path="res://Art/U_Chip.png" id="4_w64ul"]
+[ext_resource type="Script" uid="uid://cx3uy7wrhaahu" path="res://Scripts/Volume.gd" id="5_3o5t2"]
+[ext_resource type="Texture2D" uid="uid://dk8grfajhji4" path="res://Art/U_Slider.png" id="6_f0reb"]
+[ext_resource type="Texture2D" uid="uid://bfwsvnsvypw35" path="res://Art/U_Music.png" id="7_juchl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3o5t2"]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_b7svq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleBG" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_wnywc")
+
+[node name="Buttons" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Buttons"]
+layout_mode = 0
+offset_left = 1529.0
+offset_top = 691.0
+offset_right = 1896.0
+offset_bottom = 1063.0
+mouse_filter = 2
+theme_override_constants/separation = -50
+alignment = 1
+
+[node name="Play" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.699653, 0.699653, 0.699653, 1)
+theme_override_font_sizes/font_size = 64
+icon = ExtResource("3_6yab0")
+flat = true
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.811765, 0.811765, 0.968627, 1)
+theme_override_font_sizes/font_size = 64
+icon = ExtResource("2_wnywc")
+flat = true
+icon_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_left = 102.0
+offset_top = 965.0
+offset_right = 307.0
+offset_bottom = 1028.0
+theme_override_icons/grabber = ExtResource("4_w64ul")
+theme_override_icons/grabber_highlight = ExtResource("4_w64ul")
+theme_override_icons/grabber_disabled = ExtResource("4_w64ul")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_3o5t2")
+max_value = 1.0
+step = 0.05
+value = 0.75
+script = ExtResource("5_3o5t2")
+
+[node name="Bar" type="TextureRect" parent="CanvasLayer/HSlider"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 26.0
+offset_right = 205.0
+offset_bottom = 99.0
+texture = ExtResource("6_f0reb")
+
+[node name="Symbol" type="TextureRect" parent="CanvasLayer/HSlider"]
+layout_mode = 0
+offset_left = -73.0
+offset_top = 10.0
+offset_right = 34.0
+offset_bottom = 115.0
+texture = ExtResource("7_juchl")
+
+[connection signal="pressed" from="CanvasLayer/Buttons/VBoxContainer/Play" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="value_changed" from="CanvasLayer/HSlider" to="CanvasLayer/HSlider" method="_on_value_changed"]
