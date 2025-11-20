@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://7wnx3n388ry1"]
+[gd_scene load_steps=6 format=3 uid="uid://7wnx3n388ry1"]
 
 [ext_resource type="Script" uid="uid://c0jbab2f8ulh2" path="res://Scripts/shambler.gd" id="1_5f5rt"]
 [ext_resource type="Texture2D" uid="uid://cwyvgnjedo0aa" path="res://Art/shambler.png" id="1_wvcb5"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5f5rt"]
 radius = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xhxfa"]
 
 [node name="Shambler" type="RigidBody2D"]
 gravity_scale = 0.0
@@ -19,5 +21,13 @@ texture = ExtResource("1_wvcb5")
 
 [node name="Light Detector" parent="." instance=ExtResource("3_xhxfa")]
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(8, 8)
+shape = SubResource("CircleShape2D_xhxfa")
+
 [connection signal="area_entered" from="Light Detector" to="." method="_on_light_detector_area_entered"]
 [connection signal="area_exited" from="Light Detector" to="." method="_on_light_detector_area_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

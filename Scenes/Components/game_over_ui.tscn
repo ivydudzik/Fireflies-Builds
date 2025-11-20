@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://r00xdyx7r8kn"]
+
+[ext_resource type="Script" uid="uid://daa0r76h4vsyj" path="res://Scripts/game_over_ui.gd" id="1_lxdcr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lxdcr"]
+font_size = 128
+
+[node name="GameOverUi" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_lxdcr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7529412)
+
+[node name="Label" type="Label" parent="Control/ColorRect"]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 397.0
+offset_right = 1498.0
+offset_bottom = 670.0
+label_settings = SubResource("LabelSettings_lxdcr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Control"]
+process_mode = 3
+layout_mode = 0
+offset_left = 908.00006
+offset_top = 882.0
+offset_right = 1140.0
+offset_bottom = 978.0
+scale = Vector2(0.7619979, 0.7619979)
+theme_override_font_sizes/font_size = 64
+text = "Restart"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_restart_pressed"]

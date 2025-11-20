@@ -1,16 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://np3ylhob30o2"]
+[gd_scene load_steps=11 format=3 uid="uid://np3ylhob30o2"]
 
 [ext_resource type="Script" uid="uid://b83rvdfu3deqp" path="res://Scripts/level.gd" id="1_tlcug"]
 [ext_resource type="Texture2D" uid="uid://cog61eaij0vfm" path="res://Art/Ground-9564.jpg" id="2_5f3p6"]
 [ext_resource type="PackedScene" uid="uid://bn3x84xi4pt51" path="res://Scenes/Components/player.tscn" id="2_cyadu"]
+[ext_resource type="PackedScene" uid="uid://r00xdyx7r8kn" path="res://Scenes/Components/game_over_ui.tscn" id="2_u5ghp"]
 [ext_resource type="PackedScene" uid="uid://bf1ns2ifnlvdn" path="res://Scenes/Components/spotlight.tscn" id="3_xgxfi"]
 [ext_resource type="PackedScene" uid="uid://7wnx3n388ry1" path="res://Scenes/Components/shambler.tscn" id="4_5f3p6"]
 [ext_resource type="PackedScene" uid="uid://cknxifn21de8o" path="res://Scenes/Components/obstacle.tscn" id="4_xgxfi"]
 [ext_resource type="PackedScene" uid="uid://cel1ob8ane6s8" path="res://Scenes/Components/gunner_spawner.tscn" id="5_jv26f"]
 [ext_resource type="PackedScene" uid="uid://ba7e71pmk8yym" path="res://Scenes/Components/gunner.tscn" id="8_jv26f"]
+[ext_resource type="PackedScene" uid="uid://xmh4qmeqgj4o" path="res://Scenes/Components/Goal.tscn" id="9_rb0md"]
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_tlcug")
+game_over_ui_scene = ExtResource("2_u5ghp")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("2_5f3p6")
@@ -36,3 +39,9 @@ position = Vector2(900, 191)
 
 [node name="Gunner" parent="Gunner Spawner" instance=ExtResource("8_jv26f")]
 position = Vector2(602, 860)
+
+[node name="Goal" parent="." instance=ExtResource("9_rb0md")]
+position = Vector2(1645, 69)
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="level_won" from="Goal" to="." method="_on_goal_level_won"]
