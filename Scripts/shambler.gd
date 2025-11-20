@@ -26,3 +26,12 @@ func get_closest_target(target_array: Array[Node2D]):
 			closest_target_distance = global_position.distance_to(each_target.global_position)
 			
 	return closest_target
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.has_method("start_contact"):
+		body.start_contact()
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body.has_method("end_contact"):
+		body.end_contact()
