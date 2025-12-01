@@ -9,13 +9,13 @@ var proximity_shape: CollisionShape2D
 var proximity_circle: CircleShape2D
 
 # ---------- Adjustable presets ----------
-@export var RADIUS_NEUTRAL := 250.0
+@export var RADIUS_NEUTRAL := 175.0
 @export var ENERGY_NEUTRAL := 1.25
 
-@export var RADIUS_FOCUSED := 50.0       # Left-click (small circle)
+@export var RADIUS_FOCUSED := 100.0       # Left-click (small circle)
 @export var ENERGY_FOCUSED := 1.75       # bright
 
-@export var RADIUS_BROAD := 1500.0        # Right-click (large circle)
+@export var RADIUS_BROAD := 400.0        # Right-click (large circle)
 @export var ENERGY_BROAD := 0.5         # dim
 
 # Lerp constants

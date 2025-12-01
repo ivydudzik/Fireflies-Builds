@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvr5s5thk78i7" path="res://Scripts/spotlight.gd" id="1_67xx3"]
 [ext_resource type="Texture2D" uid="uid://cee6hsenbxfnr" path="res://Art/light texture.png" id="1_o7ro8"]
-[ext_resource type="PackedScene" uid="uid://bm1cewbqvj8u3" path="res://Scenes/Components/light_emitter.tscn" id="2_2lcgb"]
+[ext_resource type="PackedScene" uid="uid://bq6fhkknwakof" path="res://Scenes/Components/light_emitter_spotlight.tscn" id="3_67xx3"]
 
 [node name="Spotlight" type="Node2D" node_paths=PackedStringArray("light_node", "proximity_area")]
 script = ExtResource("1_67xx3")
@@ -12,4 +12,4 @@ proximity_area = NodePath("Light Emitter")
 [node name="Point Light" type="PointLight2D" parent="."]
 texture = ExtResource("1_o7ro8")
 
-[node name="Light Emitter" parent="." instance=ExtResource("2_2lcgb")]
+[node name="Light Emitter" parent="." instance=ExtResource("3_67xx3")]
