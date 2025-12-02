@@ -1,0 +1,133 @@
+[gd_scene load_steps=13 format=3 uid="uid://np3ylhob30o2"]
+
+[ext_resource type="Script" uid="uid://b83rvdfu3deqp" path="res://Scripts/level.gd" id="1_tlcug"]
+[ext_resource type="Texture2D" uid="uid://cog61eaij0vfm" path="res://Art/Ground-9564.jpg" id="2_5f3p6"]
+[ext_resource type="PackedScene" uid="uid://bn3x84xi4pt51" path="res://Scenes/Components/player.tscn" id="2_cyadu"]
+[ext_resource type="PackedScene" uid="uid://r00xdyx7r8kn" path="res://Scenes/Components/game_over_ui.tscn" id="2_u5ghp"]
+[ext_resource type="PackedScene" uid="uid://bf1ns2ifnlvdn" path="res://Scenes/Components/spotlight.tscn" id="3_xgxfi"]
+[ext_resource type="PackedScene" uid="uid://7wnx3n388ry1" path="res://Scenes/Components/shambler.tscn" id="4_5f3p6"]
+[ext_resource type="PackedScene" uid="uid://cknxifn21de8o" path="res://Scenes/Components/obstacle.tscn" id="4_xgxfi"]
+[ext_resource type="PackedScene" uid="uid://cel1ob8ane6s8" path="res://Scenes/Components/gunner_spawner.tscn" id="5_jv26f"]
+[ext_resource type="PackedScene" uid="uid://ba7e71pmk8yym" path="res://Scenes/Components/gunner.tscn" id="8_jv26f"]
+[ext_resource type="PackedScene" uid="uid://xmh4qmeqgj4o" path="res://Scenes/Components/Goal.tscn" id="9_rb0md"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_h"]
+size = Vector2(1920, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_v"]
+size = Vector2(50, 1080)
+
+[node name="Level 1" type="Node2D"]
+script = ExtResource("1_tlcug")
+game_over_ui_scene = ExtResource("2_u5ghp")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_5f3p6")
+centered = false
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, -25)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, 1105)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Right" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Player" parent="." instance=ExtResource("2_cyadu")]
+position = Vector2(128, 540)
+glow_max = 1.5
+
+[node name="Spotlight" parent="." instance=ExtResource("3_xgxfi")]
+position = Vector2(1285, 790)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(1287, 59)
+
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(1287, 186)
+
+[node name="Obstacle3" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(1287, 313)
+
+[node name="Obstacle4" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(1287, 440)
+
+[node name="Obstacle5" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(736, 640)
+
+[node name="Obstacle6" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(736, 767)
+
+[node name="Obstacle7" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(736, 894)
+
+[node name="Obstacle8" parent="Obstacles" instance=ExtResource("4_xgxfi")]
+position = Vector2(736, 1021)
+
+[node name="Swarm" type="Node2D" parent="."]
+
+[node name="Shambler" parent="Swarm" instance=ExtResource("4_5f3p6")]
+position = Vector2(1079, 214)
+
+[node name="Shambler2" parent="Swarm" instance=ExtResource("4_5f3p6")]
+position = Vector2(909, 126)
+
+[node name="Shambler3" parent="Swarm" instance=ExtResource("4_5f3p6")]
+position = Vector2(1782, 957)
+
+[node name="Shambler4" parent="Swarm" instance=ExtResource("4_5f3p6")]
+position = Vector2(1820, 820)
+
+[node name="Shambler5" parent="Swarm" instance=ExtResource("4_5f3p6")]
+position = Vector2(119, 124)
+
+[node name="Shambler6" parent="Swarm" instance=ExtResource("4_5f3p6")]
+position = Vector2(574, 984)
+
+[node name="Shambler7" parent="Swarm" instance=ExtResource("4_5f3p6")]
+position = Vector2(1454, 169)
+
+[node name="Gunner Spawner" parent="." instance=ExtResource("5_jv26f")]
+
+[node name="Gunner" parent="Gunner Spawner" node_paths=PackedStringArray("player", "spotlight") instance=ExtResource("8_jv26f")]
+position = Vector2(602, 860)
+player = NodePath("../../Player")
+spotlight = NodePath("../../Spotlight")
+
+[node name="Gunner2" parent="Gunner Spawner" node_paths=PackedStringArray("player", "spotlight") instance=ExtResource("8_jv26f")]
+position = Vector2(1135, 100)
+player = NodePath("../../Player")
+spotlight = NodePath("../../Spotlight")
+
+[node name="Gunner3" parent="Gunner Spawner" node_paths=PackedStringArray("player", "spotlight") instance=ExtResource("8_jv26f")]
+position = Vector2(1833, 978)
+player = NodePath("../../Player")
+spotlight = NodePath("../../Spotlight")
+
+[node name="Goal" parent="." instance=ExtResource("9_rb0md")]
+position = Vector2(1645, 69)
+
+[node name="Label" type="Label" parent="Goal"]
+offset_left = -1633.0
+offset_top = 826.0
+offset_right = -1563.0
+offset_bottom = 901.0
+scale = Vector2(2.9432354, 2.192624)
+text = "Controls:
+WASD
+Q + E"
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="level_won" from="Goal" to="." method="_on_goal_level_won"]

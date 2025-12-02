@@ -22,7 +22,8 @@ func _ready() -> void:
 		label.text = insults.pick_random()
 	
 	if button:
-		button.pressed.connect(_on_restart_pressed)
+		if not button.pressed.is_connected(_on_restart_pressed):
+			button.pressed.connect(_on_restart_pressed)
 
 func _on_restart_pressed() -> void:
 	print("Restart button pressed!")
