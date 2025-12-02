@@ -13,7 +13,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.9),
+"times": PackedFloat32Array(4.4666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -27,7 +27,7 @@ tracks/1/path = NodePath("Canvas Layer/Prologue Container/VBox Container/Label:m
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.8),
+"times": PackedFloat32Array(0, 3.7666667),
 "transitions": PackedFloat32Array(1, 0.18946481),
 "update": 0,
 "values": [1.0, 0.0]
@@ -88,6 +88,7 @@ alignment = 1
 [node name="Label Separator" type="Label" parent="Canvas Layer/Prologue Container/VBox Container"]
 layout_mode = 2
 text = " 
+
 "
 label_settings = SubResource("LabelSettings_yj561")
 horizontal_alignment = 1
@@ -112,7 +113,8 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_yj561")
 [node name="Label" type="Label" parent="Canvas Layer/Prologue Container/VBox Container"]
 layout_mode = 2
 text = "YOUR LIGHT IS WEAK.
-YOU ARE HUNTED."
+YOU ARE HUNTED.
+YOU DESERVE IT."
 label_settings = SubResource("LabelSettings_yj561")
 horizontal_alignment = 1
 vertical_alignment = 1
