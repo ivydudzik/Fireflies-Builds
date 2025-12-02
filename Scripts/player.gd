@@ -28,12 +28,12 @@ var glow_value: float = 1.0		# Current brightness
 var target_glow: float = 1.0	# Where brightness is trying to go
 
 # Player life variables
-@export var max_exposure_time: float = 2.5
-@export var recovery_rate: float = 2.0		# Multiplier for recovery speed
+@export var max_hp: float = 2.5
+@export var recovery_rate: float = 1.0		# Multiplier for recovery speed
 @export var vignette: Sprite2D		# Assign this in the inspector
 @export var enemy_quantity_dmg_mult: float = 0.01
 
-var current_exposure: float = 0.0
+var hp: float = 2.5
 var enemies_touching: int = 0
 @export var recovery_delay: float = 1.0
 var recovery_delay_timer: float = 0.0
@@ -54,6 +54,7 @@ var time_passed := 0.0
 	
 func _ready() -> void:
 	add_to_group("player")
+	hp = max_hp
 	
 	# Get the shape as a CircleShape2D
 	proximity_shape = proximity_area.get_node("CollisionShape2D") as CollisionShape2D
@@ -69,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	_apply_momentum(delta)
 	_apply_flutter(delta)
 	_apply_glow(delta)
-	_process_exposure(delta)
+	_process_health(delta)
 
 	# Move the player using velocity property
 	move_and_slide()
@@ -164,24 +165,25 @@ func _apply_flutter(delta: float) -> void:
 
 
 # ---------- Player Damage ----------
-func _process_exposure(delta: float) -> void:
+func _process_health(delta: float) -> void:
 	# Count down recovery delay timer
 	recovery_delay_timer = max(recovery_delay_timer - delta, 0.0)
 	#print(recovery_delay_timer)
 	
 	if enemies_touching > 0:
-		current_exposure += delta + (enemies_touching * enemy_quantity_dmg_mult)
-		if current_exposure >= max_exposure_time:
-			die()
+		hp -= delta + (enemies_touching * enemy_quantity_dmg_mult)
 	else:
 		if (recovery_delay_timer <= 0.0):
-			current_exposure -= delta * recovery_rate
+			hp += delta * recovery_rate
 	
-	current_exposure = clamp(current_exposure, 0.0, max_exposure_time)
+	if hp <= 0:
+		die()
+	
+	hp = clamp(hp, 0.0, max_hp)
 	
 	# Update Vignette Opacity
 	if vignette:
-		var opacity = current_exposure / max_exposure_time
+		var opacity = 1.0 - (hp / max_hp)
 		vignette.modulate.a = opacity * 0.8 # Max opacity 0.8
 
 func start_contact() -> void:
