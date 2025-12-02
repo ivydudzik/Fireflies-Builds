@@ -6,6 +6,8 @@ extends RigidBody2D
 @export var shootDelay: float = 2.0
 @export var shootingRange: float = 750.0
 
+@onready var sprite: Sprite2D = $Sprite
+
 var inRange: bool = false
 var defused: bool = false
 var shooting: bool = false
@@ -26,7 +28,7 @@ func _ready() -> void:
 		spotlight = get_node_or_null("Spotlight")
 		
 	if spotlight == null or !is_instance_valid(spotlight):
-		defused = false
+		set_defused(false)
 		return
 	
 	var shootTimer := Timer.new()
@@ -71,11 +73,16 @@ func shoot() -> void:
 		
 		get_tree().get_current_scene().add_child(bullet_instance)
 
+func set_defused(defused_state: bool) -> void:
+	print(sprite.self_modulate)
+	sprite.self_modulate = Color(0.25, 0.25, 0.5) if defused_state else Color(1, 1, 1) 
+	defused = defused_state
+
 func _on_light_detector_area_entered(area: Area2D) -> void:
 	if (area == spotlight.proximity_area or area == player.proximity_area):
-		defused = true
+		set_defused(true)
 		#print("Gunner defused!")
 
 func _on_light_detector_area_exited(area: Area2D) -> void:
 	if (area == spotlight.proximity_area or area == player.proximity_area):
-		defused = false
+		set_defused(false)
