@@ -16,7 +16,7 @@ var currentSceneNode: Node
 var currentLevel = 0
 
 func _ready() -> void:
-	print(name + " is ready!")
+	# print(name + " is ready!")
 	loadSceneByName(startingScene)
 	transition.doOpenTransition(1)
 
@@ -40,7 +40,7 @@ func quitGame() -> void:
 	get_tree().quit(0)
 
 func loadMainMenu():
-	print("Loading " + mainMenuScene)
+	#  print("Loading " + mainMenuScene)
 	switchToScene(mainMenuScene)
 
 func loadNextLevel() -> void:
@@ -49,41 +49,41 @@ func loadNextLevel() -> void:
 		currentLevel = 0
 		switchToScene("final_level")
 	else:
-		print("load next level " + str(currentLevel))
+		# print("load next level " + str(currentLevel))
 		switchToLevel(currentLevel)
 
 func reloadLevel() -> void:
-	print("reloading level")
+	# print("reloading level")
 	switchToLevel(currentLevel)
 
 func switchToScene(sceneName: String) -> void:
-	print("switch to " + sceneName)
+	# print("switch to " + sceneName)
 	transition.doTransition(2)
 	await transition.contents_hidden
 	deleteChildScene(currentSceneNode)
 	loadSceneByName(sceneName)
 
 func switchToLevel(levelNumber: int) -> void:
-	print("switch to " + str(levelNumber))
+	# print("switch to " + str(levelNumber))
 	transition.doTransition(2)
 	await transition.contents_hidden
 	deleteChildScene(currentSceneNode)
 	loadSceneByLevelNumber(levelNumber)
 
 func deleteChildScene(scene: Node):
-	print("delete child scene " + scene.name)
+	# print("delete child scene " + scene.name)
 	scene.free()
 
 func loadSceneByName(sceneName: String) -> void:
-	print("loading " + sceneName)
+	# print("loading " + sceneName)
 	loadScene(SCENE_LOCATION + sceneName + SCENE_NAME_SUFFIX)
 
 func loadSceneByLevelNumber(number: int) -> void:
-	print("loading " + str(number))
+	# print("loading " + str(number))
 	loadScene(SCENE_LOCATION + LEVEL_NAME_PREFIX + str(number) + SCENE_NAME_SUFFIX)
 
 func loadScene(path: String) -> void:
-	print("load " + path)
+	# print("load " + path)
 	var new_scene_resource: Resource = load(path)
 	if new_scene_resource == null:
 		printerr("No level at '" + path + ",' loading main menu.")
