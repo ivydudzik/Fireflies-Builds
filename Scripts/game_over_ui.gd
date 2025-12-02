@@ -30,8 +30,7 @@ func _on_restart_pressed() -> void:
 	# Unpause the game
 	get_tree().paused = false
 
-	# Reload the current scene
-	get_tree().reload_current_scene()
+	emit_signal("restart_clicked")
 
 	queue_free()
 
