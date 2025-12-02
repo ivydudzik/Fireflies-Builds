@@ -74,7 +74,6 @@ func shoot() -> void:
 		get_tree().get_current_scene().add_child(bullet_instance)
 
 func set_defused(defused_state: bool) -> void:
-	print(sprite.self_modulate)
 	sprite.self_modulate = Color(0.25, 0.25, 0.5) if defused_state else Color(1, 1, 1) 
 	defused = defused_state
 

@@ -20,6 +20,8 @@ func _on_start_pressed() -> void:
 	if isStarted:
 		return
 	emit_signal("gameStart")
+	var musicPlayer: AudioStreamPlayer = get_parent().get_node("Music Player")
+	musicPlayer.get_stream_playback().switch_to_clip_by_name("Calm")
 	isStarted = true
 
 

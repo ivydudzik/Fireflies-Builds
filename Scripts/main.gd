@@ -50,7 +50,7 @@ func loadNextLevel() -> void:
 	currentLevel += 1
 	if currentLevel > finalLevel:
 		currentLevel = 0
-		switchToScene("final_level")
+		switchToScene("main_menu")
 	else:
 		# print("load next level " + str(currentLevel))
 		switchToLevel(currentLevel)

@@ -12,6 +12,7 @@ func _on_goal_level_won() -> void:
 		add_child(ui)
 		# Connect the UI's restart signal to our levelReset signal
 		ui.restart_clicked.connect(func(): emit_signal("levelReset"))
+		ui.menu_clicked.connect(func(): emit_signal("levelComplete"))
 	else:
 		emit_signal("levelComplete")
 
@@ -22,6 +23,7 @@ func _on_player_died() -> void:
 		add_child(ui)
 		# Connect the UI's restart signal to our levelReset signal
 		ui.restart_clicked.connect(func(): emit_signal("levelReset"))
+		ui.menu_clicked.connect(func(): emit_signal("levelComplete"))
 	else:
 		emit_signal("levelReset")
 
