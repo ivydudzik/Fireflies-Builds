@@ -4,7 +4,7 @@ extends RigidBody2D
 var targets: Array[Node2D] = []
 var target: Node2D = null
 
-func _process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	target = get_best_target(targets)
 	
 	if target:
@@ -21,7 +21,9 @@ func _process(delta: float) -> void:
 		
 		# Move toward target
 		var direction := (target.global_position - global_position).normalized()
-		global_position += direction * speed * speed_multiplier * delta
+		linear_velocity = direction * speed * speed_multiplier
+	else:
+		linear_velocity = Vector2.ZERO
 
 
 func _on_light_detector_area_entered(area: Area2D) -> void:
