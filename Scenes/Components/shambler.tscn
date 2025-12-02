@@ -11,6 +11,7 @@ radius = 60.0
 
 [node name="Shambler" type="RigidBody2D"]
 gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_5f5rt")
 
 [node name="Collision Shape" type="CollisionShape2D" parent="."]

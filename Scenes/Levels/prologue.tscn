@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://5ru016ocxgmi"]
+[gd_scene load_steps=8 format=3 uid="uid://5ru016ocxgmi"]
 
 [ext_resource type="Script" uid="uid://bfww8ai3g5wj5" path="res://Scripts/prologue.gd" id="1_yj561"]
-[ext_resource type="Texture2D" uid="uid://b35s5vr3oljqw" path="res://Art/icon.svg" id="2_iog2w"]
+[ext_resource type="Texture2D" uid="uid://712ameesghl5" path="res://Art/firefly.png" id="2_yj561"]
 
 [sub_resource type="Animation" id="Animation_iog2w"]
 resource_name = "Prologue"
@@ -59,8 +59,6 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_yj561"]
 font_size = 48
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iog2w"]
-
 [node name="Prologue" type="Node2D"]
 script = ExtResource("1_yj561")
 
@@ -81,30 +79,27 @@ mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="Canvas Layer/Prologue Container"]
 layout_mode = 2
-color = Color(0.103538714, 0.03541415, 0.01354458, 1)
+color = Color(0.03444239, 0.05111727, 0.11445051, 1)
 
 [node name="VBox Container" type="VBoxContainer" parent="Canvas Layer/Prologue Container"]
 layout_mode = 2
-
-[node name="HSeparator Upper" type="HSeparator" parent="Canvas Layer/Prologue Container/VBox Container"]
-layout_mode = 2
-theme_override_constants/separation = 436
-theme_override_styles/separator = SubResource("StyleBoxEmpty_yj561")
+alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Canvas Layer/Prologue Container/VBox Container"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_iog2w")
+texture = ExtResource("2_yj561")
+
+[node name="HSeparator Center" type="HSeparator" parent="Canvas Layer/Prologue Container/VBox Container"]
+layout_mode = 2
+theme_override_constants/separation = 46
+theme_override_styles/separator = SubResource("StyleBoxEmpty_yj561")
 
 [node name="Label" type="Label" parent="Canvas Layer/Prologue Container/VBox Container"]
 layout_mode = 2
-text = "GET READY TO PLAY A GAME MADE BY US"
+text = "YOUR LIGHT IS WEAK.
+YOU ARE HUNTED."
 label_settings = SubResource("LabelSettings_yj561")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HSeparator Lower" type="HSeparator" parent="Canvas Layer/Prologue Container/VBox Container"]
-layout_mode = 2
-theme_override_constants/separation = 436
-theme_override_styles/separator = SubResource("StyleBoxEmpty_iog2w")

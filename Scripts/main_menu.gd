@@ -19,8 +19,7 @@ func _ready():
 func _on_start_pressed() -> void:
 	if isStarted:
 		return
-	#emit_signal("gameStart")
-	get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
+	emit_signal("gameStart")
 	isStarted = true
 
 

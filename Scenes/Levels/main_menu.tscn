@@ -1,12 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://dde4tjt146seb"]
+[gd_scene load_steps=15 format=3 uid="uid://dde4tjt146seb"]
 
 [ext_resource type="Script" uid="uid://5562vljqh1gc" path="res://Scripts/main_menu.gd" id="1_b7svq"]
 [ext_resource type="Texture2D" uid="uid://cog61eaij0vfm" path="res://Art/Ground-9564.jpg" id="2_6yab0"]
+[ext_resource type="Texture2D" uid="uid://ngno8u2p3eve" path="res://Art/1.png" id="2_juchl"]
 [ext_resource type="Texture2D" uid="uid://b35s5vr3oljqw" path="res://Art/icon.svg" id="2_wnywc"]
 [ext_resource type="Texture2D" uid="uid://dp7fuyd1nxood" path="res://Art/M_Play.png" id="3_6yab0"]
+[ext_resource type="Texture2D" uid="uid://csu6iam87e6c8" path="res://Art/2.png" id="3_as8ev"]
+[ext_resource type="Texture2D" uid="uid://ddn0bs6ryfxrx" path="res://Art/3.png" id="4_ch2lh"]
 [ext_resource type="Texture2D" uid="uid://idh4geq1oj" path="res://Art/U_Chip.png" id="4_w64ul"]
 [ext_resource type="Script" uid="uid://cx3uy7wrhaahu" path="res://Scripts/Volume.gd" id="5_3o5t2"]
+[ext_resource type="Texture2D" uid="uid://dclq5tbxre46m" path="res://Art/4.png" id="5_uwu3h"]
 [ext_resource type="Texture2D" uid="uid://dk8grfajhji4" path="res://Art/U_Slider.png" id="6_f0reb"]
+[ext_resource type="Material" uid="uid://cjnxfcxb06oc7" path="res://Shaders & Materials/blur.tres" id="6_ggkx6"]
 [ext_resource type="Texture2D" uid="uid://bfwsvnsvypw35" path="res://Art/U_Music.png" id="7_juchl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3o5t2"]
@@ -14,9 +19,39 @@
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_b7svq")
 
+[node name="Background Layer" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("2_juchl")
+centered = false
+
+[node name="Background Layer2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("3_as8ev")
+centered = false
+
+[node name="Background Layer3" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("4_ch2lh")
+centered = false
+
+[node name="Background Layer4" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("5_uwu3h")
+centered = false
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("6_ggkx6")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TitleBG" type="TextureRect" parent="CanvasLayer"]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_6yab0")
@@ -26,7 +61,7 @@ offset_left = 685.0
 offset_top = 100.0
 offset_right = 1284.0
 offset_bottom = 373.0
-theme_override_colors/font_color = Color(0.80784315, 0.8117647, 0.96862745, 1)
+theme_override_colors/font_color = Color(0.8672928, 0.74513197, 0.443859, 1)
 theme_override_font_sizes/font_size = 200
 text = "Firefly"
 
@@ -45,6 +80,7 @@ theme_override_constants/separation = -50
 alignment = 1
 
 [node name="Play" type="Button" parent="CanvasLayer/Buttons/VBoxContainer"]
+modulate = Color(0.9188954, 0.8100992, 0.4894026, 1)
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0.699653, 0.699653, 0.699653, 1)
 theme_override_font_sizes/font_size = 64

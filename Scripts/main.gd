@@ -12,6 +12,9 @@ const SCENE_NAME_SUFFIX = ".tscn"
 @export var mainMenuScene: String
 @export var finalLevel: int
 
+@export_category("Transitions")
+@export var transition_time: float = 4
+
 var currentSceneNode: Node
 var currentLevel = 0
 
@@ -58,14 +61,14 @@ func reloadLevel() -> void:
 
 func switchToScene(sceneName: String) -> void:
 	# print("switch to " + sceneName)
-	transition.doTransition(2)
+	transition.doTransition(transition_time)
 	await transition.contents_hidden
 	deleteChildScene(currentSceneNode)
 	loadSceneByName(sceneName)
 
 func switchToLevel(levelNumber: int) -> void:
 	# print("switch to " + str(levelNumber))
-	transition.doTransition(2)
+	transition.doTransition(transition_time)
 	await transition.contents_hidden
 	deleteChildScene(currentSceneNode)
 	loadSceneByLevelNumber(levelNumber)

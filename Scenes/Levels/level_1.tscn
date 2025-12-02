@@ -1,13 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://np3ylhob30o2"]
+[gd_scene load_steps=18 format=3 uid="uid://np3ylhob30o2"]
 
 [ext_resource type="Script" uid="uid://b83rvdfu3deqp" path="res://Scripts/level.gd" id="1_tlcug"]
-[ext_resource type="Texture2D" uid="uid://cog61eaij0vfm" path="res://Art/Ground-9564.jpg" id="2_5f3p6"]
 [ext_resource type="PackedScene" uid="uid://bn3x84xi4pt51" path="res://Scenes/Components/player.tscn" id="2_cyadu"]
 [ext_resource type="PackedScene" uid="uid://r00xdyx7r8kn" path="res://Scenes/Components/game_over_ui.tscn" id="2_u5ghp"]
+[ext_resource type="Texture2D" uid="uid://ngno8u2p3eve" path="res://Art/1.png" id="3_tjl6l"]
 [ext_resource type="PackedScene" uid="uid://bf1ns2ifnlvdn" path="res://Scenes/Components/spotlight.tscn" id="3_xgxfi"]
 [ext_resource type="PackedScene" uid="uid://7wnx3n388ry1" path="res://Scenes/Components/shambler.tscn" id="4_5f3p6"]
+[ext_resource type="Texture2D" uid="uid://csu6iam87e6c8" path="res://Art/2.png" id="4_3628d"]
 [ext_resource type="PackedScene" uid="uid://cknxifn21de8o" path="res://Scenes/Components/obstacle.tscn" id="4_xgxfi"]
+[ext_resource type="Texture2D" uid="uid://ddn0bs6ryfxrx" path="res://Art/3.png" id="5_irw6p"]
 [ext_resource type="PackedScene" uid="uid://cel1ob8ane6s8" path="res://Scenes/Components/gunner_spawner.tscn" id="5_jv26f"]
+[ext_resource type="Texture2D" uid="uid://dclq5tbxre46m" path="res://Art/4.png" id="6_31phq"]
+[ext_resource type="Material" uid="uid://cjnxfcxb06oc7" path="res://Shaders & Materials/blur.tres" id="7_tjl6l"]
 [ext_resource type="PackedScene" uid="uid://ba7e71pmk8yym" path="res://Scenes/Components/gunner.tscn" id="8_jv26f"]
 [ext_resource type="PackedScene" uid="uid://xmh4qmeqgj4o" path="res://Scenes/Components/Goal.tscn" id="9_rb0md"]
 [ext_resource type="Texture2D" uid="uid://ckr3huywucfnm" path="res://Art/vignette.png" id="10_hwvp3"]
@@ -22,9 +26,34 @@ size = Vector2(50, 1080)
 script = ExtResource("1_tlcug")
 game_over_ui_scene = ExtResource("2_u5ghp")
 
-[node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("2_5f3p6")
+[node name="Background Layer" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("3_tjl6l")
 centered = false
+
+[node name="Background Layer2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("4_3628d")
+centered = false
+
+[node name="Background Layer3" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("5_irw6p")
+centered = false
+
+[node name="Background Layer4" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("6_31phq")
+centered = false
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("7_tjl6l")
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="Player" parent="." node_paths=PackedStringArray("vignette") instance=ExtResource("2_cyadu")]
 position = Vector2(201, 551)
