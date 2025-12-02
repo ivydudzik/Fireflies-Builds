@@ -29,7 +29,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if (body == player):
-		player.current_exposure += bullet_dmg
+		player.hp -= bullet_dmg
 		player.recovery_delay_timer = player.recovery_delay
 	else:
 		if body.has_method("die"):
