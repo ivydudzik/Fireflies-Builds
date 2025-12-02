@@ -4,8 +4,10 @@ extends RigidBody2D
 @export var lifetime: float = 10.0
 
 func _ready() -> void:
-	if (player == null):
-		player = get_node("/root/Main/Level 1/Player")
+	if player == null:
+		var players = get_tree().get_nodes_in_group("player")
+		if players.size() > 0:
+			player = players[0]
 	
 	linear_velocity = (player.global_position - self.global_position).normalized() * get_parent().bulletSpeed
 	

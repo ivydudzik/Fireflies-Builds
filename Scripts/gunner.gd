@@ -15,9 +15,11 @@ var bullet
 func _ready() -> void:
 	bullet = load("res://Scenes/Components/bullet.tscn")
 	
-	if (player == null):
-		player = get_node("Player")
-	
+	if player == null:
+		var players = get_tree().get_nodes_in_group("player")
+		if players.size() > 0:
+			player = players[0]
+			
 	if (spotlight == null):
 		spotlight = get_node("Spotlight")
 	
@@ -27,7 +29,12 @@ func _ready() -> void:
 	shootTimer.start()
 	shootTimer.timeout.connect(shoot)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	if player == null or !is_instance_valid(player):
+		shooting = false
+		inRange = false
+		return
+	
 	if (!inRange):
 		if ((player.position - self.position).length() < shootingRange):
 			inRange = true

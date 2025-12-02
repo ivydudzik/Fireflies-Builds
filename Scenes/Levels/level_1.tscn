@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://np3ylhob30o2"]
+[gd_scene load_steps=13 format=3 uid="uid://np3ylhob30o2"]
 
 [ext_resource type="Script" uid="uid://b83rvdfu3deqp" path="res://Scripts/level.gd" id="1_tlcug"]
 [ext_resource type="Texture2D" uid="uid://cog61eaij0vfm" path="res://Art/Ground-9564.jpg" id="2_5f3p6"]
@@ -98,27 +98,6 @@ position = Vector2(574, 984)
 
 [node name="Shambler7" parent="Swarm" instance=ExtResource("4_5f3p6")]
 position = Vector2(1454, 169)
-
-[node name="Shambler8" parent="Swarm" instance=ExtResource("4_5f3p6")]
-position = Vector2(1087, 635)
-
-[node name="Shambler9" parent="Swarm" instance=ExtResource("4_5f3p6")]
-position = Vector2(1569, 467)
-
-[node name="Shambler10" parent="Swarm" instance=ExtResource("4_5f3p6")]
-position = Vector2(648, 420)
-
-[node name="Shambler11" parent="Swarm" instance=ExtResource("4_5f3p6")]
-position = Vector2(1174, 958)
-
-[node name="Shambler12" parent="Swarm" instance=ExtResource("4_5f3p6")]
-position = Vector2(971, 907)
-
-[node name="Shambler13" parent="Swarm" instance=ExtResource("4_5f3p6")]
-position = Vector2(1362, 607)
-
-[node name="Shambler14" parent="Swarm" instance=ExtResource("4_5f3p6")]
-position = Vector2(1823, 137)
 
 [node name="Gunner Spawner" parent="." instance=ExtResource("5_jv26f")]
 

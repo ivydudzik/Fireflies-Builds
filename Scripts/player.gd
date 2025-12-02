@@ -50,6 +50,8 @@ var noise := FastNoiseLite.new()
 var time_passed := 0.0
 	
 func _ready() -> void:
+	add_to_group("player")
+	
 	# Get the shape as a CircleShape2D
 	proximity_shape = proximity_area.get_node("CollisionShape2D") as CollisionShape2D
 	proximity_circle = proximity_shape.shape as CircleShape2D
