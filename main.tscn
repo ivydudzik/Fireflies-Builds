@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccw2twi7tla13"]
+[gd_scene load_steps=6 format=3 uid="uid://ccw2twi7tla13"]
 
 [ext_resource type="Script" uid="uid://duhxahwaabywh" path="res://Scripts/main.gd" id="1_1v5ju"]
 [ext_resource type="PackedScene" uid="uid://w8weg2xjhduj" path="res://Scenes/Components/transition_layer.tscn" id="2_031tv"]
+[ext_resource type="AudioStream" uid="uid://dgn4ioo87il12" path="res://Audio/RunningWaters.mp3" id="3_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://bvpbrtnuqyc2c" path="res://Audio/Beautiful Daughter.mp3" id="4_lquwl"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_7mycd"]
+clip_count = 2
+clip_0/name = &"Calm"
+clip_0/stream = ExtResource("3_1bvp3")
+clip_0/auto_advance = 0
+clip_1/name = &"Ominous"
+clip_1/stream = ExtResource("4_lquwl")
+clip_1/auto_advance = 0
+initial_clip = 1
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+}
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1v5ju")
@@ -10,3 +30,7 @@ mainMenuScene = "main_menu"
 finalLevel = 1
 
 [node name="Transition Layer" parent="." instance=ExtResource("2_031tv")]
+
+[node name="Music Player" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_7mycd")
+autoplay = true

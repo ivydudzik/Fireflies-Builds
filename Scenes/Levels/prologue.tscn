@@ -54,10 +54,10 @@ _data = {
 &"RESET": SubResource("Animation_qvi6u")
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj561"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_yj561"]
 font_size = 48
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yj561"]
 
 [node name="Prologue" type="Node2D"]
 script = ExtResource("1_yj561")
@@ -85,15 +85,28 @@ color = Color(0.03444239, 0.05111727, 0.11445051, 1)
 layout_mode = 2
 alignment = 1
 
+[node name="Label Separator" type="Label" parent="Canvas Layer/Prologue Container/VBox Container"]
+layout_mode = 2
+text = " 
+"
+label_settings = SubResource("LabelSettings_yj561")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator Center" type="HSeparator" parent="Canvas Layer/Prologue Container/VBox Container"]
+layout_mode = 2
+theme_override_constants/separation = 31
+theme_override_styles/separator = SubResource("StyleBoxEmpty_yj561")
+
 [node name="Icon" type="TextureRect" parent="Canvas Layer/Prologue Container/VBox Container"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_yj561")
 
-[node name="HSeparator Center" type="HSeparator" parent="Canvas Layer/Prologue Container/VBox Container"]
+[node name="HSeparator Center2" type="HSeparator" parent="Canvas Layer/Prologue Container/VBox Container"]
 layout_mode = 2
-theme_override_constants/separation = 46
+theme_override_constants/separation = 31
 theme_override_styles/separator = SubResource("StyleBoxEmpty_yj561")
 
 [node name="Label" type="Label" parent="Canvas Layer/Prologue Container/VBox Container"]
