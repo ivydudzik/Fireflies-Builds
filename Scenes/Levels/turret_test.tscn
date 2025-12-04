@@ -1,0 +1,126 @@
+[gd_scene load_steps=15 format=3 uid="uid://v8dahk0q0xil"]
+
+[ext_resource type="Script" uid="uid://b83rvdfu3deqp" path="res://Scripts/level.gd" id="1_potox"]
+[ext_resource type="PackedScene" uid="uid://r00xdyx7r8kn" path="res://Scenes/Components/game_over_ui.tscn" id="2_kak5i"]
+[ext_resource type="Texture2D" uid="uid://ngno8u2p3eve" path="res://Art/1.png" id="3_ie2pt"]
+[ext_resource type="Texture2D" uid="uid://csu6iam87e6c8" path="res://Art/2.png" id="4_okceb"]
+[ext_resource type="Texture2D" uid="uid://ddn0bs6ryfxrx" path="res://Art/3.png" id="5_vdx8d"]
+[ext_resource type="Texture2D" uid="uid://dclq5tbxre46m" path="res://Art/4.png" id="6_tpiwq"]
+[ext_resource type="Material" uid="uid://cjnxfcxb06oc7" path="res://Shaders & Materials/blur.tres" id="7_hdhts"]
+[ext_resource type="PackedScene" uid="uid://bn3x84xi4pt51" path="res://Scenes/Components/player.tscn" id="8_hkfp0"]
+[ext_resource type="PackedScene" uid="uid://bf1ns2ifnlvdn" path="res://Scenes/Components/spotlight.tscn" id="9_m5w66"]
+[ext_resource type="PackedScene" uid="uid://cknxifn21de8o" path="res://Scenes/Components/obstacle.tscn" id="10_slubj"]
+[ext_resource type="PackedScene" uid="uid://cel1ob8ane6s8" path="res://Scenes/Components/gunner_spawner.tscn" id="12_r6eug"]
+[ext_resource type="PackedScene" uid="uid://ba7e71pmk8yym" path="res://Scenes/Components/gunner.tscn" id="13_1dfbt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_h"]
+size = Vector2(1920, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_v"]
+size = Vector2(50, 1080)
+
+[node name="Level 1" type="Node2D"]
+script = ExtResource("1_potox")
+game_over_ui_scene = ExtResource("2_kak5i")
+
+[node name="Background Layer" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("3_ie2pt")
+centered = false
+
+[node name="Background Layer2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("4_okceb")
+centered = false
+
+[node name="Background Layer3" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("5_vdx8d")
+centered = false
+
+[node name="Background Layer4" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("6_tpiwq")
+centered = false
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("7_hdhts")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Player" parent="." node_paths=PackedStringArray("vignette") instance=ExtResource("8_hkfp0")]
+position = Vector2(201, 551)
+glow_max = 1.5
+max_hp = 1000000.0
+vignette = NodePath("")
+shambler_dmg = 0.0
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, -25)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, 1105)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Right" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Spotlight" parent="." instance=ExtResource("9_m5w66")]
+position = Vector2(1285, 790)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(1464, 55)
+
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(1464, 182)
+
+[node name="Obstacle3" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(1464, 309)
+
+[node name="Obstacle4" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(1464, 436)
+
+[node name="Obstacle5" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(980, 649)
+
+[node name="Obstacle6" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(980, 776)
+
+[node name="Obstacle7" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(980, 903)
+
+[node name="Obstacle8" parent="Obstacles" instance=ExtResource("10_slubj")]
+position = Vector2(980, 1030)
+
+[node name="Gunner Spawner" parent="." instance=ExtResource("12_r6eug")]
+
+[node name="Gunner" parent="Gunner Spawner" node_paths=PackedStringArray("player", "spotlight") instance=ExtResource("13_1dfbt")]
+position = Vector2(1174, 963)
+player = NodePath("../../Player")
+spotlight = NodePath("../../Spotlight")
+
+[node name="Gunner2" parent="Gunner Spawner" node_paths=PackedStringArray("player", "spotlight") instance=ExtResource("13_1dfbt")]
+position = Vector2(754, 95)
+player = NodePath("../../Player")
+spotlight = NodePath("../../Spotlight")
+
+[node name="Gunner3" parent="Gunner Spawner" node_paths=PackedStringArray("player", "spotlight") instance=ExtResource("13_1dfbt")]
+position = Vector2(1806, 396)
+player = NodePath("../../Player")
+spotlight = NodePath("../../Spotlight")
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]

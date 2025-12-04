@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=3 uid="uid://cktqfj6js2a7r"]
+
+[ext_resource type="Script" uid="uid://b83rvdfu3deqp" path="res://Scripts/level.gd" id="1_p2qbe"]
+[ext_resource type="PackedScene" uid="uid://r00xdyx7r8kn" path="res://Scenes/Components/game_over_ui.tscn" id="2_4ll62"]
+[ext_resource type="Texture2D" uid="uid://ngno8u2p3eve" path="res://Art/1.png" id="3_k2pxf"]
+[ext_resource type="Texture2D" uid="uid://csu6iam87e6c8" path="res://Art/2.png" id="4_ryil5"]
+[ext_resource type="Texture2D" uid="uid://ddn0bs6ryfxrx" path="res://Art/3.png" id="5_edahc"]
+[ext_resource type="Texture2D" uid="uid://dclq5tbxre46m" path="res://Art/4.png" id="6_25t2d"]
+[ext_resource type="Material" uid="uid://cjnxfcxb06oc7" path="res://Shaders & Materials/blur.tres" id="7_lqw12"]
+[ext_resource type="PackedScene" uid="uid://bn3x84xi4pt51" path="res://Scenes/Components/player.tscn" id="8_q6ha0"]
+[ext_resource type="PackedScene" uid="uid://bf1ns2ifnlvdn" path="res://Scenes/Components/spotlight.tscn" id="9_yiemr"]
+[ext_resource type="PackedScene" uid="uid://7wnx3n388ry1" path="res://Scenes/Components/shambler.tscn" id="11_l04a7"]
+[ext_resource type="PackedScene" uid="uid://cel1ob8ane6s8" path="res://Scenes/Components/gunner_spawner.tscn" id="12_dlemv"]
+[ext_resource type="PackedScene" uid="uid://ba7e71pmk8yym" path="res://Scenes/Components/gunner.tscn" id="13_3jhh8"]
+[ext_resource type="Texture2D" uid="uid://ckr3huywucfnm" path="res://Art/vignette.png" id="15_shyum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_h"]
+size = Vector2(1920, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_v"]
+size = Vector2(50, 1080)
+
+[node name="Level 1" type="Node2D"]
+script = ExtResource("1_p2qbe")
+game_over_ui_scene = ExtResource("2_4ll62")
+
+[node name="Background Layer" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("3_k2pxf")
+centered = false
+
+[node name="Background Layer2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("4_ryil5")
+centered = false
+
+[node name="Background Layer3" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("5_edahc")
+centered = false
+
+[node name="Background Layer4" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("6_25t2d")
+centered = false
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("7_lqw12")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Player" parent="." node_paths=PackedStringArray("vignette") instance=ExtResource("8_q6ha0")]
+position = Vector2(201, 551)
+glow_max = 1.5
+vignette = NodePath("../CanvasLayer/Vignette")
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, -25)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, 1105)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Right" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Spotlight" parent="." instance=ExtResource("9_yiemr")]
+position = Vector2(1285, 790)
+
+[node name="Swarm" type="Node2D" parent="."]
+
+[node name="Shambler" parent="Swarm" instance=ExtResource("11_l04a7")]
+position = Vector2(1493, 267)
+
+[node name="Shambler2" parent="Swarm" instance=ExtResource("11_l04a7")]
+position = Vector2(1290, 148)
+
+[node name="Shambler3" parent="Swarm" instance=ExtResource("11_l04a7")]
+position = Vector2(1572, 468)
+
+[node name="Shambler4" parent="Swarm" instance=ExtResource("11_l04a7")]
+position = Vector2(596, 229)
+
+[node name="Gunner Spawner" parent="." instance=ExtResource("12_dlemv")]
+
+[node name="Gunner" parent="Gunner Spawner" node_paths=PackedStringArray("player", "spotlight") instance=ExtResource("13_3jhh8")]
+position = Vector2(955, 931)
+player = NodePath("../../Player")
+spotlight = NodePath("../../Spotlight")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Vignette" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(0.8634364, 4.3317675e-07, 1.0588765e-06, 1)
+position = Vector2(960, 540.5)
+scale = Vector2(1.6, 1.35375)
+texture = ExtResource("15_shyum")
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]

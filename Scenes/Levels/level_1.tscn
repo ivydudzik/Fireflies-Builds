@@ -162,13 +162,13 @@ texture = ExtResource("10_hwvp3")
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 16.0
 offset_top = 917.0
-offset_right = 234.0
+offset_right = 702.8161
 offset_bottom = 1130.0
 scale = Vector2(0.8517564, 0.7104687)
 theme_override_font_sizes/font_size = 50
 text = "Controls:
-WASD
-Q + E"
+WASD            Mouse
+Q + E              Left / Right Click"
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="level_won" from="Goal" to="." method="_on_goal_level_won"]

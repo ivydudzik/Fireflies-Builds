@@ -1,0 +1,117 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3wqqrfu6ea54"]
+
+[ext_resource type="Script" uid="uid://b83rvdfu3deqp" path="res://Scripts/level.gd" id="1_t27xo"]
+[ext_resource type="PackedScene" uid="uid://r00xdyx7r8kn" path="res://Scenes/Components/game_over_ui.tscn" id="2_yxf76"]
+[ext_resource type="Texture2D" uid="uid://ngno8u2p3eve" path="res://Art/1.png" id="3_ia1lp"]
+[ext_resource type="Texture2D" uid="uid://csu6iam87e6c8" path="res://Art/2.png" id="4_5buja"]
+[ext_resource type="Texture2D" uid="uid://ddn0bs6ryfxrx" path="res://Art/3.png" id="5_wyygt"]
+[ext_resource type="Texture2D" uid="uid://dclq5tbxre46m" path="res://Art/4.png" id="6_u87on"]
+[ext_resource type="Material" uid="uid://cjnxfcxb06oc7" path="res://Shaders & Materials/blur.tres" id="7_iunut"]
+[ext_resource type="PackedScene" uid="uid://bn3x84xi4pt51" path="res://Scenes/Components/player.tscn" id="8_jd2hh"]
+[ext_resource type="PackedScene" uid="uid://bf1ns2ifnlvdn" path="res://Scenes/Components/spotlight.tscn" id="9_jip10"]
+[ext_resource type="PackedScene" uid="uid://cknxifn21de8o" path="res://Scenes/Components/obstacle.tscn" id="10_1xj2d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_h"]
+size = Vector2(1920, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_border_v"]
+size = Vector2(50, 1080)
+
+[node name="Level 1" type="Node2D"]
+script = ExtResource("1_t27xo")
+game_over_ui_scene = ExtResource("2_yxf76")
+
+[node name="Background Layer" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("3_ia1lp")
+centered = false
+
+[node name="Background Layer2" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("4_5buja")
+centered = false
+
+[node name="Background Layer3" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("5_wyygt")
+centered = false
+
+[node name="Background Layer4" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.334, 3.334)
+texture = ExtResource("6_u87on")
+centered = false
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("7_iunut")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Player" parent="." node_paths=PackedStringArray("vignette") instance=ExtResource("8_jd2hh")]
+position = Vector2(201, 551)
+glow_max = 1.5
+vignette = NodePath("")
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, -25)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(960, 1105)
+shape = SubResource("RectangleShape2D_border_h")
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Right" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_border_v")
+
+[node name="Spotlight" parent="." instance=ExtResource("9_jip10")]
+position = Vector2(1285, 790)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1017, 55)
+
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1017, 182)
+
+[node name="Obstacle3" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1017, 309)
+
+[node name="Obstacle4" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1017, 436)
+
+[node name="Obstacle5" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1501, 640)
+
+[node name="Obstacle6" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1501, 767)
+
+[node name="Obstacle7" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1501, 894)
+
+[node name="Obstacle8" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(1501, 1021)
+
+[node name="Obstacle9" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(582, 377)
+
+[node name="Obstacle10" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(582, 504)
+
+[node name="Obstacle11" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(582, 631)
+
+[node name="Obstacle12" parent="Obstacles" instance=ExtResource("10_1xj2d")]
+position = Vector2(582, 758)
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]

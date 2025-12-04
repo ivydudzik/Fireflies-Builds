@@ -19,6 +19,10 @@ func _physics_process(_delta: float) -> void:
 		# Convert brightness into speed multiplier
 		var speed_multiplier: float = clamp(brightness, 0.25, 3.0)
 		
+		# Point toward target
+		var target_angle = (target.global_position - global_position).angle() + deg_to_rad(90)
+		rotation = lerp_angle(rotation, target_angle, 0.1)
+		
 		# Move toward target
 		var direction := (target.global_position - global_position).normalized()
 		linear_velocity = direction * speed * speed_multiplier

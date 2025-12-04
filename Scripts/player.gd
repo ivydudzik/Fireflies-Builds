@@ -32,6 +32,7 @@ var target_glow: float = 1.0	# Where brightness is trying to go
 @export var recovery_rate: float = 1.0		# Multiplier for recovery speed
 @export var vignette: Sprite2D		# Assign this in the inspector
 @export var enemy_quantity_dmg_mult: float = 0.01
+@export var shambler_dmg: float = 1.0
 
 var hp: float = 2.5
 var enemies_touching: int = 0
@@ -171,7 +172,7 @@ func _process_health(delta: float) -> void:
 	#print(recovery_delay_timer)
 	
 	if enemies_touching > 0:
-		hp -= delta + (enemies_touching * enemy_quantity_dmg_mult)
+		hp -= (delta + (enemies_touching * enemy_quantity_dmg_mult)) * shambler_dmg
 	else:
 		if (recovery_delay_timer <= 0.0):
 			hp += delta * recovery_rate
