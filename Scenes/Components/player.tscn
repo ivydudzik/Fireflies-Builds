@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn3x84xi4pt51"]
 
-[ext_resource type="Texture2D" uid="uid://712ameesghl5" path="res://Art/firefly.png" id="1_coypj"]
 [ext_resource type="Script" uid="uid://45mbagsymtyu" path="res://Scripts/player.gd" id="1_i6t11"]
 [ext_resource type="Texture2D" uid="uid://cee6hsenbxfnr" path="res://Art/light texture.png" id="2_coypj"]
+[ext_resource type="Texture2D" uid="uid://dmbq0iy1au0fs" path="res://Art/CMPM 170 Firefly-01.png" id="2_p0vwk"]
 [ext_resource type="PackedScene" uid="uid://bm1cewbqvj8u3" path="res://Scenes/Components/light_emitter_player.tscn" id="4_p0vwk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_coypj"]
@@ -17,7 +17,10 @@ proximity_area = NodePath("Light Emitter")
 shape = SubResource("CircleShape2D_coypj")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_coypj")
+position = Vector2(4.7683716e-07, 1.9073486e-06)
+rotation = 1.5704445
+scale = Vector2(0.2883895, 0.2883895)
+texture = ExtResource("2_p0vwk")
 
 [node name="Point Light" type="PointLight2D" parent="."]
 texture = ExtResource("2_coypj")
