@@ -147,9 +147,12 @@ position = Vector2(1833, 974)
 player = NodePath("../../Player")
 spotlight = NodePath("../../Spotlight")
 
-[node name="Goal" parent="." instance=ExtResource("9_rb0md")]
+[node name="Goal" parent="." node_paths=PackedStringArray("goalPos1", "goalPos2", "goalPos3") instance=ExtResource("9_rb0md")]
 modulate = Color(1, 1, 1, 0.6862745)
 position = Vector2(1645, 69)
+goalPos1 = NodePath("../Goal Positions/GoalPos1")
+goalPos2 = NodePath("../Goal Positions/GoalPos2")
+goalPos3 = NodePath("../Goal Positions/GoalPos3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -169,6 +172,17 @@ theme_override_font_sizes/font_size = 50
 text = "Controls:
 WASD            Mouse
 Q + E              Left / Right Click"
+
+[node name="Goal Positions" type="Node2D" parent="."]
+
+[node name="GoalPos1" type="Node2D" parent="Goal Positions"]
+position = Vector2(1646, 69)
+
+[node name="GoalPos2" type="Node2D" parent="Goal Positions"]
+position = Vector2(732, 41)
+
+[node name="GoalPos3" type="Node2D" parent="Goal Positions"]
+position = Vector2(41, 820)
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="level_won" from="Goal" to="." method="_on_goal_level_won"]
